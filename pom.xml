@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.esrx.services</groupId>
+    <artifactId>persfinacct</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>persfinacct</name>
+    <description>PersonFinancialAccount Platform</description>
+
+<!--    <parent>-->
+<!--        <groupId>com.esrx</groupId>-->
+<!--        <artifactId>java-parent</artifactId>-->
+<!--        <version>4.1.0</version>-->
+<!--    </parent>-->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-boot-maven-plugin.version>2.1.5.RELEASE</spring-boot-maven-plugin.version>
+        <sonar.exclusions>
+            **/dto/*.java,
+            **/bo/*.java,
+            **/bo/enums/*.java,
+            **/domain/*.java,
+            **/config/*.java,
+            **/config/kafka/*.java,
+            **/model/*.java,
+            **/processor/UpdateStreamProcessor.java,
+            **/controller/SwaggerController.java,
+            **/aspect/CustomHeader.java,
+            **/aspect/LogExecutionTime.java,
+            **/aspect/Message.java,
+            **/processor/ChangeProcessor.java,
+            **/processor/RetryProcessor.java,
+            **/aspect/ChangePayload.java,
+            **/model/enums/*.java,
+            **/ControllerExceptionHandler.java,
+            **/internal/*.java,
+            **/CompositeHealthIndicatorFactory.java,
+            **/exception/*.java,
+            **/util/Constants.java,
+            **/config/*.java,
+            **/controllers/KafkaController.java
+            **/models/**/*.java
+        </sonar.exclusions>
+    </properties>
+
+    <modules>
+        <module>persfinacct-dto</module>
+        <module>persfinacct-model</module>
+        <module>persfinacct-springboot</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.pivotal.spring.cloud</groupId>
+                <artifactId>spring-cloud-services-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

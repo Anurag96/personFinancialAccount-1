@@ -1,0 +1,10 @@
+---
+instance_limits:
+  min: 2
+  max: 4
+rules:
+  - rule_type: "cpu"
+    threshold:
+      min: 20
+      max: 80
+scheduled_limit_changes: []

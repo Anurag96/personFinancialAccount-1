@@ -1,0 +1,72 @@
+---
+applications:
+  - name: personFinancialAccounts-1-dev-candidate
+    memory: 1G
+    instances: 1
+    buildpack: java_buildpack_latest
+    timeout: 180
+    path: ./jars/persfinacct-springboot-1.0.0-SNAPSHOT.jar
+    env:
+      RUN_ENV: dev
+      JAVA_OPTS: "
+  -Dnewrelic.config.app_name='personFinancialAccounts-1-dev'
+  -Dnewrelic.config.labels='Org:PersonFinancialAccount;Product:personFinancialAccounts'
+  -Dnewrelic.config.distributed_tracing.enabled='true'
+  -Dnewrelic.config.proxy_host='newrelic-cntlm.express-scripts.com'
+  -Dnewrelic.config.kafka.metrics.as_events.enabled='true'
+  -Dnewrelic.config.proxy_port='443'
+  "
+      spring.cloud.config.uri: https://config-server-dev.express-scripts.com/config
+      spring.profiles.active: dev,service,cloud
+      spring.application.name: personFinancialAccounts
+    services:
+      - personFinancialAccounts-1-ups
+      - authinator
+      - newrelic
+  - name: personFinancialAccounts-1-qa-candidate
+    memory: 1G
+    instances: 2
+    buildpack: java_buildpack_latest
+    timeout: 180
+    path: ./jars/persfinacct-springboot-1.0.0-SNAPSHOT.jar
+    env:
+      RUN_ENV: qa
+      JAVA_OPTS: "
+  -Dnewrelic.config.app_name='personFinancialAccounts-1-qa'
+  -Dnewrelic.config.labels='Org:PersonFinancialAccount;Product:personFinancialAccounts'
+  -Dnewrelic.config.distributed_tracing.enabled='true'
+  -Dnewrelic.config.proxy_host='newrelic-cntlm.express-scripts.com'
+  -Dnewrelic.config.kafka.metrics.as_events.enabled='true'
+  -Dnewrelic.config.proxy_port='443'
+  "
+      spring.cloud.config.uri: https://config-server-qa.express-scripts.com/config
+      spring.profiles.active: qa,service,cloud
+      spring.application.name: personFinancialAccounts
+    services:
+      - personFinancialAccounts-1-ups
+      - authinator
+      - newrelic
+  - name: personFinancialAccounts-1-uat-candidate
+    memory: 1G
+    instances: 2
+    buildpack: java_buildpack_latest
+    timeout: 180
+    path: ./jars/persfinacct-springboot-1.0.0-SNAPSHOT.jar
+    env:
+      RUN_ENV: uat
+      JAVA_OPTS: "
+  -Dnewrelic.config.app_name='personFinancialAccounts-1-uat'
+  -Dnewrelic.config.labels='Org:PersonFinancialAccount;Product:personFinancialAccounts'
+  -Dnewrelic.config.distributed_tracing.enabled='true'
+  -Dnewrelic.config.proxy_host='newrelic-cntlm.express-scripts.com'
+  -Dnewrelic.config.kafka.metrics.as_events.enabled='true'
+  -Dnewrelic.config.proxy_port='443'
+  "
+      spring.cloud.config.uri: https://config-server-uat.express-scripts.com/config
+      spring.profiles.active: uat,service,cloud
+      spring.application.name: personFinancialAccounts
+    services:
+      - personFinancialAccounts-1-ups
+      - authinator
+      - newrelic
+
