@@ -1,0 +1,48 @@
+com:
+  esrx:
+    config:
+      bus:
+        enabled: false
+healthcheck:
+  config:
+    enabled: true
+spring:
+  application:
+    name: personFinancialAccounts
+    version: 1
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+  cloud:
+    bus:
+      enabled: false
+    config:
+      enabled: true
+      fail-fast: true
+      name: ${spring.application.name}
+      profile: ${spring.application.name}-${spring.application.version}
+  config:
+    key:
+      personFinancialAccounts-1:
+        1: ${vcap.services.personFinancialAccounts-1-ups.config.key.personFinancialAccounts-1.1}
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    config:
+      uri: https://config-server-dev.express-scripts.com/config
+
+---
+spring:
+  profiles: qa
+  cloud:
+    config:
+      uri: https://config-server-qa.express-scripts.com/config
+
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      uri: https://config-server-uat.express-scripts.com/config

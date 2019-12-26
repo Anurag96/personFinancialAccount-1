@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.express-scripts</groupId>
+        <artifactId>service-component-profile</artifactId>
+        <version>5.9.0</version>
+    </parent>
+
+    <groupId>com.esrx.services</groupId>
+    <artifactId>persfinacct-model</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>persfinacct-model</name>
+    <description>PersonFinancialAccount Model</description>
+
+    <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <springfox.staticdocs.version>2.6.1</springfox.staticdocs.version>
+        <jacoco.version>0.8.1</jacoco.version>
+        <common.dependencies.version>5.2.0</common.dependencies.version>
+        <inf.monitoring.version>1.10.0</inf.monitoring.version>
+        <inf.security.version>8.9.0</inf.security.version>
+        <inf.security.jwt.version>1.3.1</inf.security.jwt.version>
+        <inf.security.oauth.version>1.8.0</inf.security.oauth.version>
+        <inf.spring.boot.version>3.2.0</inf.spring.boot.version>
+        <thirdparty.dependencies.version>5.1.0</thirdparty.dependencies.version>
+        <spring.kafka.version>1.3.2.RELEASE</spring.kafka.version>
+        <jackson.jsr310.version>2.9.5</jackson.jsr310.version>
+        <services.core.version>1.4.0</services.core.version>
+        <entity.common.model.version>4.2.0</entity.common.model.version>
+        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.esrx.services</groupId>
+            <artifactId>entity-common-model</artifactId>
+            <version>${entity.common.model.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>0.25.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>https://artifactory.express-scripts.com/artifactory/libs-release</url>
+        </repository>
+        <repository>
+            <snapshots/>
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://artifactory.express-scripts.com/artifactory/libs-snapshot</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>esi-central</id>
+            <name>libs-release
+            </name> <!-- libs-release repository proxy's libs-release-local repository plus some others -->
+            <url>https://artifactory.express-scripts.com/artifactory/libs-release</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

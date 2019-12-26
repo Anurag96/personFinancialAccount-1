@@ -1,0 +1,87 @@
+management:
+  metrics:
+    export:
+      graphite:
+        host: nonprodgraphite.express-scripts.com
+        port: 2114
+mongo:
+  dbPassword: <Enter the Password>
+  mongo-ssl-key-store-password: <Enter the Password>
+  env: dev
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb://${mongo.dbName}:${mongo.dbPassword}@ch3dr615796.express-scripts.com:27017,ch3dr615795.express-scripts.com:27017/peppfact?replicaSet=rs-dv-peppfact01'
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration
+  cloud:
+    stream:
+      bindings:
+        pfaSync:
+          contentType: application/json
+          destination: TP.FINACC.SYNC.TMP
+          group: finacckafkaapi_tmp
+          producer:
+            header-mode: raw
+        pfaLatest:
+          contentType: application/json
+          destination: TP.FINACC.LATEST.TMP
+          group: finacckafkaapi_tmp
+          producer:
+            header-mode: raw
+        change:
+          contentType: application/json
+          destination: TP.FINACC.CHANGE.TMP
+          group: finacckafkaapi_tmp
+          producer:
+            header-mode: raw
+
+      kafka:
+        binder:
+          group:
+            id: finacckafkaapi_tmp
+          brokers: 'localhost:9092'
+          autoCreateTopics: true
+          autoAddPartitions: false
+          configuration:
+            security:
+              protocol: PLAINTEXT
+            sasl:
+              mechanism: GSSAPI
+              kerberos:
+                service:
+                  name: cdkafka
+            auto:
+              offset:
+                reset: latest
+            max:
+              poll:
+                records: 50
+com:
+  esrx:
+    app:
+      monitoring:
+        instanceId: 0
+        name: '${spring.application.name}'
+        version: '${spring.application.version}'
+        organization: '${config.com.esrx.app.monitoring.organization:platform}'
+        region: '${config.com.esrx.app.monitoring.region:ch3pcf01}'
+        environment: '${config.com.esrx.app.monitoring.environment:local}'
+        system:
+          metrics:
+            enabled: '${config.com.esrx.app.monitoring.system.metrics:false}'
+    pfa:
+      api:
+        kafkaKrbConfFile: ./config/dev/krb5.conf
+        jaasConfigFile: ./config/local/dev/localpkafka_jaas.conf
+        storeFile: ./config/dev/truststore.jks
+        truststore:
+          password: changeit
+server:
+  port: 55555
