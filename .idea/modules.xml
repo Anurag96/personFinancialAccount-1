@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/persfinacct.iml" filepath="$PROJECT_DIR$/persfinacct.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persfinacct-dto/persfinacct-dto.iml" filepath="$PROJECT_DIR$/persfinacct-dto/persfinacct-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persfinacct-model/persfinacct-model.iml" filepath="$PROJECT_DIR$/persfinacct-model/persfinacct-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persfinacct-springboot/persfinacct-springboot.iml" filepath="$PROJECT_DIR$/persfinacct-springboot/persfinacct-springboot.iml" />
+    </modules>
+  </component>
+</project>
